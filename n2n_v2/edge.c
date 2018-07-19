@@ -582,7 +582,7 @@ static ssize_t sendto_sock( int fd, const void * buf, size_t len, const n2n_sock
 
     sent = sendto( fd, buf, len, 0/*flags*/,
                    (struct sockaddr *)&peer_addr, sizeof(struct sockaddr_in) );
-    Sleep(2);
+    sleep(2);
     if ( sent < 0 )
     {
         char * c = strerror(errno);
