@@ -78,6 +78,11 @@ SOCKET open_socket(int local_port, int bind_any) {
 #endif
 
   setsockopt(sock_fd, SOL_SOCKET, SO_REUSEADDR, (char *)&sockopt, sizeof(sockopt));
+  int nRecvBuf = 128 * 1024;
+  setsockopt(sock_fd, SOL_SOCKET, SO_RCVBUF, (const char *)&nRecvBuf, sizeof(int));
+
+  int nNetTimeout = 2000; 
+  setsockopt(sock_fd, SOL_SOCKET, SO_RCVTIMEO, (const char *)&nNetTimeout, sizeof(int));
 
   memset(&local_address, 0, sizeof(local_address));
   local_address.sin_family = AF_INET;
